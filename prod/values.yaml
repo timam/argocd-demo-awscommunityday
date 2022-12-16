@@ -1,0 +1,27 @@
+deployment:
+  namespace: "demo"
+  microservice_name: "guestbook-ui"
+  docker_image: "gcr.io/heptio-images/ks-guestbook-demo"
+
+  service_type: "NodePort"
+  service_port: "80"
+  container_port: "80"
+
+  min_replica: "2"
+  max_replica: "2"
+
+  memory_request: "512Mi"
+  memory_limit: "1024Mi"
+  memory_based_scale_threshold: "60"
+
+  cpu_request: "100m"
+  cpu_limit: "250m"
+  cpu_based_scale_threshold: "60"
+
+  liveness_prob_delay: "10"
+  liveness_prob_period: "10"
+  readiness_prob_delay: "10"
+  readiness_prob_period: "10"
+  terminate_grace_period: "10"
+  health_check_path: "/"
+

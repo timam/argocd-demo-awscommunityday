@@ -1,0 +1,11 @@
+apiVersion: v2
+name: guestbook-ui
+description: A Helm chart for Basic Deployment
+
+type: application
+version: 1.0.0
+
+dependencies:
+  - name: deployment
+    version: "0.1.18"
+    repository: "file://charts/deployment-0.1.18.tgz"
