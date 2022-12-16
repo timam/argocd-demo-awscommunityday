@@ -18,12 +18,12 @@ metadata:
     app: public-ingress
 spec:
   rules:
-    - host: guestbook-ui.timam.io
+    - host: helloworld.timam.io
       http:
         paths:
           - backend:
               service:
-                name: "guestbook-ui"
+                name: "prod-helloworld"
                 port:
-                  number: 80
+                  number: 8080
             pathType: ImplementationSpecific
