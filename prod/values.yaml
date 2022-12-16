@@ -1,6 +1,6 @@
 deployment:
   namespace: "demo"
-  microservice_name: "guestbook-ui"
+  microservice_name: "prod-helloworld"
   docker_image: "timam/helloworld-go"
 
   service_type: "NodePort"
