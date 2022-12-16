@@ -18,15 +18,6 @@ metadata:
     app: public-ingress
 spec:
   rules:
-    - http:
-        paths:
-          - backend:
-              service:
-                name: ssl-redirect
-                port:
-                  name: use-annotation
-            path: /*
-            pathType: ImplementationSpecific
     - host: guestbook-ui.timam.io
       http:
         paths:
@@ -34,5 +25,5 @@ spec:
               service:
                 name: "guestbook-ui"
                 port:
-                  number: 1337
+                  number: 80
             pathType: ImplementationSpecific
