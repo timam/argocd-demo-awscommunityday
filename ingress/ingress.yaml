@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: public-alb
+  namespace: demo
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/subnets: subnet-09455931037f15f3f, subnet-0c2b42f0dc70fcb11, subnet-0b9a0c788879de2f3
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
+    alb.ingress.kubernetes.io/target-type: instance
+    alb.ingress.kubernetes.io/inbound-cidrs: 0.0.0.0/0
+    alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=120
+    alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:eu-central-1:144161207422:certificate/03d78bac-af62-430b-87a0-93cf1adb1192'
+    alb.ingress.kubernetes.io/healthcheck-path: "/"
+  labels:
+    app: public-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              service:
+                name: ssl-redirect
+                port:
+                  name: use-annotation
+            path: /*
+            pathType: ImplementationSpecific
+    - host: guestbook-ui.timam.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: "guestbook-ui"
+                port:
+                  number: 1337
+            pathType: ImplementationSpecific
