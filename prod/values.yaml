@@ -4,8 +4,8 @@ deployment:
   docker_image: "timam/helloworld-go"
 
   service_type: "NodePort"
-  service_port: "80"
-  container_port: "80"
+  service_port: "8080"
+  container_port: "8080"
 
   min_replica: "2"
   max_replica: "2"
